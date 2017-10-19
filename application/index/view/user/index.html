@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<form action="{:url('info')}">
+	<input type="text" name="nickname">
+	<div><img src="{:captcha_src()}" alt="captcha" onclick="this.src=this.src"/></div>
+	<input type="text" name="cap">
+	<input type="submit" name="" value="提交" id="sub">
+</form>
+<div class='hh'></div>
+</body>
+</html>
+<script type="text/javascript" src="__JS__/jquery-1.12.3.min.js"></script>
+<script type="text/javascript">
+$("#sub").click(function(){
+	$.post($('form').attr('action'), {nickname:$('input[name=nickname]').val()}, function(data){
+		console.log(data);
+	}, 'json');
+	// $.post("{:url('info')}", {cap:$('input[name=cap]').val()}, function(data){
+	// 	console.log(data);
+	// } , 'json');
+	return false;
+})
+	$.post("{:url('info')}", {}, function(data){
+		$('.hh').append(data);
+		console.log(data);
+	}, 'json');
+	
+</script>
